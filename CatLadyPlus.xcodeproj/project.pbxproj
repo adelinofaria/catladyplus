@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C61E1C802C4038BC008859EE /* RootScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61E1C7F2C4038BC008859EE /* RootScreen.swift */; };
+		C61E1C822C403931008859EE /* CatBreedDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61E1C812C403931008859EE /* CatBreedDetailScreen.swift */; };
+		C61E1C842C403D88008859EE /* CatBreedDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61E1C832C403D88008859EE /* CatBreedDetailViewModel.swift */; };
+		C61E1C862C404240008859EE /* CatBreedDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61E1C852C404240008859EE /* CatBreedDetailView.swift */; };
 		C6F089592C40308000565A8D /* CatLadyPlusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F089582C40308000565A8D /* CatLadyPlusApp.swift */; };
 		C6F0895B2C40308000565A8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F0895A2C40308000565A8D /* ContentView.swift */; };
 		C6F0895D2C40308200565A8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6F0895C2C40308200565A8D /* Assets.xcassets */; };
@@ -41,6 +45,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C61E1C7F2C4038BC008859EE /* RootScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootScreen.swift; sourceTree = "<group>"; };
+		C61E1C812C403931008859EE /* CatBreedDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreedDetailScreen.swift; sourceTree = "<group>"; };
+		C61E1C832C403D88008859EE /* CatBreedDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreedDetailViewModel.swift; sourceTree = "<group>"; };
+		C61E1C852C404240008859EE /* CatBreedDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreedDetailView.swift; sourceTree = "<group>"; };
 		C6F089552C40308000565A8D /* CatLadyPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatLadyPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6F089582C40308000565A8D /* CatLadyPlusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatLadyPlusApp.swift; sourceTree = "<group>"; };
 		C6F0895A2C40308000565A8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -157,7 +165,9 @@
 		C6F089882C4032FB00565A8D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				C61E1C812C403931008859EE /* CatBreedDetailScreen.swift */,
 				C6F0898C2C4033CF00565A8D /* CatBreedListScreen.swift */,
+				C61E1C7F2C4038BC008859EE /* RootScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -165,6 +175,7 @@
 		C6F089892C40330C00565A8D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C61E1C852C404240008859EE /* CatBreedDetailView.swift */,
 				C6F0898E2C4033DE00565A8D /* CatBreedListView.swift */,
 			);
 			path = Views;
@@ -173,6 +184,7 @@
 		C6F0898A2C40331300565A8D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				C61E1C832C403D88008859EE /* CatBreedDetailViewModel.swift */,
 				C6F089902C4033EC00565A8D /* CatBreedListViewModel.swift */,
 			);
 			path = ViewModels;
@@ -345,11 +357,15 @@
 				C6F089982C40361900565A8D /* CatsAPIHandler.swift in Sources */,
 				C6F0898D2C4033CF00565A8D /* CatBreedListScreen.swift in Sources */,
 				C6F089932C40343600565A8D /* CatBreedModel.swift in Sources */,
+				C61E1C822C403931008859EE /* CatBreedDetailScreen.swift in Sources */,
+				C61E1C802C4038BC008859EE /* RootScreen.swift in Sources */,
 				C6F089912C4033EC00565A8D /* CatBreedListViewModel.swift in Sources */,
 				C6F089622C40308200565A8D /* Persistence.swift in Sources */,
 				C6F0898F2C4033DE00565A8D /* CatBreedListView.swift in Sources */,
 				C6F0895B2C40308000565A8D /* ContentView.swift in Sources */,
+				C61E1C842C403D88008859EE /* CatBreedDetailViewModel.swift in Sources */,
 				C6F089652C40308200565A8D /* CatLadyPlus.xcdatamodeld in Sources */,
+				C61E1C862C404240008859EE /* CatBreedDetailView.swift in Sources */,
 				C6F089592C40308000565A8D /* CatLadyPlusApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

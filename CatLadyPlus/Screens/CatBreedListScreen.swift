@@ -8,8 +8,16 @@
 import SwiftUI
 
 struct CatBreedListScreen: View {
+
+    let favouriteFilter: Bool
+
+    init(favouriteFilter: Bool = false) {
+        self.favouriteFilter = favouriteFilter
+    }
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+
+        CatBreedListView(viewModel: CatBreedListViewModel(favouriteFilter: self.favouriteFilter))
     }
 }
 

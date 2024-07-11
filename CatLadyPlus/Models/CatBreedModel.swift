@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct CatBreedModel {
+
+    let name: String
+}
