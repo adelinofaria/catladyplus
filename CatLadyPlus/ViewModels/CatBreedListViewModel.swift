@@ -20,7 +20,7 @@ class CatBreedListViewModel: ObservableObject {
     @Published var searchText = ""
 
     private let datasource: CatsDatasource
-    private let favouriteFilter: Bool
+    let favouriteFilter: Bool
 
     private var dataset: [CatBreedModel] = [] {
         didSet {
@@ -34,7 +34,7 @@ class CatBreedListViewModel: ObservableObject {
 
         self.dataset = []
         self.presentingDataset = self.dataset
-        self.favouriteIds = []
+        self.favouriteIds = ["amis", "bali"]
 
         Task {
             do {
@@ -64,5 +64,10 @@ class CatBreedListViewModel: ObservableObject {
                 self.presentingDataset = filteredDataset
             }
         }
+    }
+
+    func isFavourite(catBreed: CatBreedModel) -> Bool {
+
+        return self.favouriteIds.contains(catBreed.id)
     }
 }

@@ -25,7 +25,13 @@ struct CatBreedListView: View {
                     NavigationLink {
                         CatBreedDetailScreen(catBreedModel: self.viewModel.presentingDataset[index])
                     } label: {
-                        CatBreedListCellView(catBreed: self.viewModel.presentingDataset[index], favourite: false)
+                        let catBreed = self.viewModel.presentingDataset[index]
+
+                        CatBreedListCellView(
+                            catBreed: catBreed,
+                            favourite: self.viewModel.isFavourite(catBreed: catBreed),
+                            showLifespan: self.viewModel.favouriteFilter
+                        )
                     }
                 }
             }

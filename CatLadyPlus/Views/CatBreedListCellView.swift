@@ -11,6 +11,7 @@ struct CatBreedListCellView: View {
 
     let catBreed: CatBreedModel
     @State var favourite: Bool
+    let showLifespan: Bool
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
@@ -33,6 +34,10 @@ struct CatBreedListCellView: View {
                     }
                 }
                 Text(catBreed.name)
+                if showLifespan, let lifeSpan = self.catBreed.life_span {
+
+                    Text("Lifespan: \(lifeSpan)yr")
+                }
             }
             Button(action: {
                 self.buttonTap()
