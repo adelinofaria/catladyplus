@@ -10,7 +10,7 @@ import SwiftUI
 struct CatBreedListView: View {
 
     enum Constants {
-        static let cellHeight: CGFloat = 50
+        static let minimumCellWidth: CGFloat = 100
     }
 
     @StateObject var viewModel: CatBreedListViewModel
@@ -20,15 +20,12 @@ struct CatBreedListView: View {
     var body: some View {
 
         ScrollView {
-            LazyVGrid(columns: [
-                GridItem(.flexible(minimum: Constants.cellHeight)),
-                GridItem(.flexible(minimum: Constants.cellHeight)),
-            ]) {
+            LazyVGrid(columns: Array(repeating: .init(.flexible(minimum: Constants.minimumCellWidth)), count: 2)) {
                 ForEach(0..<self.viewModel.presentingDataset.count, id: \.self) { index in
                     NavigationLink {
                         CatBreedDetailScreen(catBreedModel: self.viewModel.presentingDataset[index])
                     } label: {
-                        Text(self.viewModel.presentingDataset[index].name)
+                        CatBreedListCellView(catBreed: self.viewModel.presentingDataset[index], favourite: false)
                     }
                 }
             }

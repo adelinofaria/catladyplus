@@ -13,12 +13,11 @@ struct CatBreedDetailView: View {
 
     var body: some View {
         Text(self.viewModel.catBreed.name)
-        Text("favourite = \(self.viewModel.catBreed.favourite.description)")
     }
 }
 
 struct CatBreedDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        CatBreedDetailView(viewModel: CatBreedDetailViewModel(catBreed: CatBreedModel(name: "cat breed", favourite: false)))
+        CatBreedDetailView(viewModel: CatBreedDetailViewModel(catBreed: CatBreedModel.stub))
     }
 }
