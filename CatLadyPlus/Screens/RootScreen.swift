@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct RootScreen: View {
+
+    let catsDatasource = CatsDatasource()
+
     var body: some View {
         TabView {
             NavigationStack {
-                CatBreedListScreen()
+                CatBreedListScreen(datasource: self.catsDatasource)
                     .navigationTitle("Compendium")
             }
             .tabItem {
                 Label("Breeds", systemImage: "list.dash")
             }
             NavigationStack {
-                CatBreedListScreen(favouriteFilter: true)
+                CatBreedListScreen(datasource: self.catsDatasource, favouriteFilter: true)
                     .navigationTitle("Favourites")
             }
             .tabItem {

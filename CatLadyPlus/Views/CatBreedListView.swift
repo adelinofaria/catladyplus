@@ -13,9 +13,9 @@ struct CatBreedListView: View {
         static let cellHeight: CGFloat = 50
     }
 
-    @State private var searchText = ""
-
     @StateObject var viewModel: CatBreedListViewModel
+
+    @Environment(\.isSearching) var isSearching
 
     var body: some View {
 
@@ -24,18 +24,24 @@ struct CatBreedListView: View {
                 GridItem(.flexible(minimum: Constants.cellHeight)),
                 GridItem(.flexible(minimum: Constants.cellHeight)),
             ]) {
-                ForEach(0..<self.viewModel.presentingCatBreeds.count, id: \.self) { index in
+                ForEach(0..<self.viewModel.presentingDataset.count, id: \.self) { index in
                     NavigationLink {
-                        CatBreedDetailScreen(catBreedModel: self.viewModel.presentingCatBreeds[index])
+                        CatBreedDetailScreen(catBreedModel: self.viewModel.presentingDataset[index])
                     } label: {
-                        Text(self.viewModel.presentingCatBreeds[index].name)
+                        Text(self.viewModel.presentingDataset[index].name)
                     }
                 }
             }
         }
-        .searchable(text: $searchText)
+        .searchable(text: $viewModel.searchText, prompt: "Breeds of cats")
         .onSubmit(of: .search) {
             self.performSearch()
+        }
+        .onChange(of: self.viewModel.searchText) { newValue in
+            if !isSearching, newValue.count == 0 {
+
+                self.performSearch()
+            }
         }
     }
 
@@ -43,12 +49,12 @@ struct CatBreedListView: View {
 
     private func performSearch() {
 
-        self.viewModel.filter(text: self.searchText)
+        self.viewModel.updatePresentedDataset()
     }
 }
 
 struct CatBreedListView_Previews: PreviewProvider {
     static var previews: some View {
-        CatBreedListView(viewModel: CatBreedListViewModel(favouriteFilter: false))
+        CatBreedListView(viewModel: CatBreedListViewModel(datasource: CatsDatasource(), favouriteFilter: false))
     }
 }

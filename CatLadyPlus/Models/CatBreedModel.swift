@@ -10,4 +10,5 @@ import Foundation
 struct CatBreedModel {
 
     let name: String
+    let favourite: Bool
 }

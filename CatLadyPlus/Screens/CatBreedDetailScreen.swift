@@ -19,6 +19,6 @@ struct CatBreedDetailScreen: View {
 
 struct CatBreedDetailScreen_Previews: PreviewProvider {
     static var previews: some View {
-        CatBreedDetailScreen(catBreedModel: CatBreedModel(name: "cat breed"))
+        CatBreedDetailScreen(catBreedModel: CatBreedModel(name: "cat breed", favourite: false))
     }
 }

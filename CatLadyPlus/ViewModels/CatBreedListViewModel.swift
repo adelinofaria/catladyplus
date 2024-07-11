@@ -9,27 +9,52 @@ import Foundation
 
 class CatBreedListViewModel: ObservableObject {
 
-    @Published var presentingCatBreeds: [CatBreedModel]
+    @Published var presentingDataset: [CatBreedModel]
+    @Published var errorText: String? = nil
+    @Published var searchText = ""
+
+    private let datasource: CatsDatasource
 
     private let favouriteFilter: Bool
-    private let dataset: [CatBreedModel]
 
-    init(favouriteFilter: Bool) {
-        self.favouriteFilter = favouriteFilter
-        self.dataset = [
-            CatBreedModel(name: "Cat Breed 1"),
-            CatBreedModel(name: "Cat Breed 2"),
-            CatBreedModel(name: "Cat Breed 3"),
-            CatBreedModel(name: "Cat Breed 4"),
-            CatBreedModel(name: "Cat Breed 5"),
-            CatBreedModel(name: "Cat Breed 6")
-        ]
-
-        self.presentingCatBreeds = self.dataset
+    private var dataset: [CatBreedModel] = [] {
+        didSet {
+            self.updatePresentedDataset()
+        }
     }
 
-    func filter(text: String) {
+    init(datasource: CatsDatasource, textFilter: String? = nil, favouriteFilter: Bool) {
+        self.datasource = datasource
+        self.favouriteFilter = favouriteFilter
 
-        self.presentingCatBreeds = self.dataset.filter { $0.name.contains(text) }
+        self.dataset = []
+        self.presentingDataset = self.dataset
+
+        Task {
+            do {
+                dataset = try await datasource.requestBreeds()
+            } catch {
+                errorText = error.localizedDescription
+            }
+        }
+    }
+
+    func updatePresentedDataset() {
+
+        Task {
+
+            let filteredDataset = dataset.filter { catBreed in
+
+                let textFilterResult = self.searchText.count > 0 ? catBreed.name.contains(self.searchText) : true
+                let favouriteFilterResult = self.favouriteFilter ? catBreed.favourite : true
+
+                return textFilterResult && favouriteFilterResult
+            }
+
+            await MainActor.run {
+
+                self.presentingDataset = filteredDataset
+            }
+        }
     }
 }
