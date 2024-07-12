@@ -133,13 +133,6 @@
 			path = Endpoints;
 			sourceTree = "<group>";
 		};
-		C61E1C9F2C41712B008859EE /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		C6F0894C2C40308000565A8D = {
 			isa = PBXGroup;
 			children = (
@@ -188,7 +181,6 @@
 		C6F0896D2C40308200565A8D /* CatLadyPlusTests */ = {
 			isa = PBXGroup;
 			children = (
-				C61E1C9F2C41712B008859EE /* Extensions */,
 				C6F0896E2C40308200565A8D /* CatLadyPlusTests.swift */,
 				C61E1C992C416BED008859EE /* CatsApiEndpointTests.swift */,
 				C61E1C9B2C416C2D008859EE /* CatsDatasourceTests.swift */,

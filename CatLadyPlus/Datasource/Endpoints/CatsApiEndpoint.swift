@@ -40,7 +40,6 @@ enum CatsApiEndpoint {
             }
         }
 
-
         return url
     }
 
