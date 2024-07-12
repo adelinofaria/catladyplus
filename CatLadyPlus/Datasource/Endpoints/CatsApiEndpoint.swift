@@ -12,7 +12,7 @@ enum CatsApiEndpoint {
     case breeds(limit: Int, page: Int)
 
     static let baseURL = URL(string: "https://api.thecatapi.com/v1/")!
-    static let apiKey = "live_J7NIuEGjeCIx9Buz966PKPJL7OnKdCK1CUQkVrkbCm6qx1iyGBFDINT1PGKjgc2N"
+    static let apiKey = <#T##API_KEY#>
 
     var url: URL {
 
