@@ -7,93 +7,97 @@
 
 import Foundation
 
-class CatsDatasource {
+actor CatsDatasource {
 
-    enum Endpoints {
+    enum Constants {
 
-        case breeds(limit: Int, page: Int)
-
-        static let baseURL = URL(string: "https://api.thecatapi.com/v1/")!
-        static let apiKey = "live_J7NIuEGjeCIx9Buz966PKPJL7OnKdCK1CUQkVrkbCm6qx1iyGBFDINT1PGKjgc2N"
-
-        var url: URL {
-
-            let path: String
-
-            switch self {
-            case .breeds:
-                path = "breeds"
-            }
-
-            var url = Endpoints.baseURL.appending(path: path)
-
-            if let additionalQueryItems = self.queryItems,
-               var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
-
-                var queryItems = urlComponents.queryItems ?? []
-
-                queryItems.append(contentsOf: additionalQueryItems)
-
-                urlComponents.queryItems = queryItems
-
-                if let queryStringURL = urlComponents.url {
-
-                    url = queryStringURL
-                }
-            }
-
-
-            return url
-        }
-
-        var headers: [String: String] {
-
-            let baseHeaders: [String: String] = [
-                "Content-Type": "application/json",
-                "x-api-key": Endpoints.apiKey
-            ]
-
-            return baseHeaders
-        }
-
-        var queryItems: [URLQueryItem]? {
-
-            let dictionary: [String: String]
-
-            switch self {
-            case .breeds(let limit, let page):
-                dictionary = [
-                    "limit": String(limit),
-                    "page": String(page)
-                ]
-            }
-
-            return dictionary.map { URLQueryItem(name: $0, value: $1) }
-        }
-
-        var request: URLRequest {
-
-            var request = URLRequest(url: self.url)
-
-            self.headers.forEach { request.addValue($0.value, forHTTPHeaderField: $0.key) }
-
-            return request
-        }
+        static let paginationLimit = 10
+        static let userDefaultsFavouritesKey = "favourites"
     }
 
     let networking = Networking()
 
-    func requestBreeds(limit: Int, page: Int) async throws -> [CatBreedModel] {
+    private var breedsPage = 0
+    private var lastPage = false
+    private var catBreeds: [CatBreedModel] = []
 
-        let endpoint = Endpoints.breeds(limit: limit, page: page)
+    // MARK: Breeds
 
-        let models: [CatBreedModel] = try await self.networking.perform(request: endpoint.request)
+    func requestBreeds() async throws -> [CatBreedModel] {
 
-        return models
+        if self.catBreeds.count > 0 {
+
+            return self.catBreeds
+
+        } else {
+
+            let endpoint = CatsApiEndpoints.breeds(limit: Constants.paginationLimit, page: self.breedsPage)
+
+            let models: [CatBreedModel] = try await self.networking.perform(request: endpoint.request)
+
+            if models.count != Constants.paginationLimit {
+
+                self.lastPage = true
+            }
+
+            self.catBreeds = models
+
+            return models
+        }
     }
 
-    func requestFavourites() -> [String] {
+    func requestBreedsNextPage() async throws -> [CatBreedModel] {
 
-        return []
+        if lastPage == false {
+
+            self.breedsPage += 1
+
+            let endpoint = CatsApiEndpoints.breeds(limit: Constants.paginationLimit, page: self.breedsPage)
+
+            let models: [CatBreedModel] = try await self.networking.perform(request: endpoint.request)
+
+            if models.count != Constants.paginationLimit {
+
+                self.lastPage = true
+            }
+
+            self.catBreeds.append(contentsOf: models)
+
+            return models
+
+        } else {
+
+            return []
+        }
+    }
+
+    // MARK: Favourites
+
+    nonisolated func isFavourite(catBreedId: String) -> Bool {
+
+        let favourites = UserDefaults.standard.array(forKey: Constants.userDefaultsFavouritesKey) as? [String]
+
+        return favourites?.contains(catBreedId) ?? false
+    }
+
+    func toggleFavourite(catBreedId: String) -> Bool {
+
+        var favourites = (UserDefaults.standard.array(forKey: Constants.userDefaultsFavouritesKey) as? [String]) ?? []
+
+        let isFavourite = favourites.contains(catBreedId)
+
+
+        if isFavourite, let index = favourites.firstIndex(of: catBreedId) {
+
+            favourites.remove(at: index)
+
+        } else {
+
+            favourites.append(catBreedId)
+        }
+
+        UserDefaults.standard.set(favourites, forKey: Constants.userDefaultsFavouritesKey)
+
+        return !isFavourite
     }
 }

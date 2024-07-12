@@ -7,67 +7,90 @@
 
 import Foundation
 
-class CatBreedListViewModel: ObservableObject {
+extension CatBreedListView {
 
-    enum Constants {
+    class ViewModel: ObservableObject {
 
-        static let paginationLimit = 10
-    }
+        let datasource: CatsDatasource
+        let favouriteFilter: Bool
 
-    @Published var presentingDataset: [CatBreedModel]
-    @Published var favouriteIds: [String]
-    @Published var errorText: String? = nil
-    @Published var searchText = ""
+        @Published var presentedDataset: [CatBreedTuple] = []
 
-    private let datasource: CatsDatasource
-    let favouriteFilter: Bool
+        @Published var errorText: String? = nil
+        @Published var searchText = ""
 
-    private var dataset: [CatBreedModel] = [] {
-        didSet {
-            self.updatePresentedDataset()
+        private var lastItem = false
+        private var dataset: [CatBreedModel] = []
+
+        init(datasource: CatsDatasource, favouriteFilter: Bool) {
+            self.datasource = datasource
+            self.favouriteFilter = favouriteFilter
         }
-    }
 
-    init(datasource: CatsDatasource, textFilter: String? = nil, favouriteFilter: Bool) {
-        self.datasource = datasource
-        self.favouriteFilter = favouriteFilter
+        func fetchDataset() {
 
-        self.dataset = []
-        self.presentingDataset = self.dataset
-        self.favouriteIds = ["amis", "bali"]
+            Task {
+                do {
+                    let dataset = try await datasource.requestBreeds()
 
-        Task {
-            do {
-                dataset = try await datasource.requestBreeds(limit: Constants.paginationLimit, page: 0)
-            } catch {
-                await MainActor.run {
-                    errorText = error.localizedDescription
+                    self.dataset = dataset
+                    self.lastItem = false
+
+                    await MainActor.run {
+                        self.updatePresentedDataset()
+                    }
+                } catch {
+                    await MainActor.run {
+                        self.errorText = error.localizedDescription
+                    }
                 }
             }
         }
-    }
 
-    func updatePresentedDataset() {
+        func fetchNextPage() {
 
-        Task {
+            if self.lastItem == false {
 
-            let filteredDataset = dataset.filter { catBreed in
+                Task {
+                    do {
+                        let dataset = try await datasource.requestBreedsNextPage()
 
-                let textFilterResult = self.searchText.count > 0 ? catBreed.name.contains(self.searchText) : true
-                let favouriteFilterResult = self.favouriteFilter ? self.favouriteIds.contains(catBreed.id)  : true
+                        self.lastItem = dataset.count == 0
 
-                return textFilterResult && favouriteFilterResult
-            }
+                        self.dataset.append(contentsOf: dataset)
 
-            await MainActor.run {
-
-                self.presentingDataset = filteredDataset
+                        await MainActor.run {
+                            self.updatePresentedDataset()
+                        }
+                    } catch {
+                        await MainActor.run {
+                            self.errorText = error.localizedDescription
+                        }
+                    }
+                }
             }
         }
-    }
 
-    func isFavourite(catBreed: CatBreedModel) -> Bool {
+        func updatePresentedDataset() {
 
-        return self.favouriteIds.contains(catBreed.id)
+            Task {
+
+                let filteredDataset = dataset.filter { catBreed in
+
+                    let textFilterResult = self.searchText.count > 0 ? catBreed.name.contains(self.searchText) : true
+                    let favouriteFilterResult = self.favouriteFilter ? self.datasource.isFavourite(catBreedId: catBreed.id)  : true
+
+                    return textFilterResult && favouriteFilterResult
+
+                }.map {
+                    CatBreedTuple(catBreed: $0, favourite: self.datasource.isFavourite(catBreedId: $0.id))
+                }
+
+                await MainActor.run {
+
+                    self.presentedDataset = filteredDataset
+                }
+            }
+        }
     }
 }

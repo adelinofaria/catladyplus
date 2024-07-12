@@ -13,25 +13,31 @@ struct CatBreedListView: View {
         static let minimumCellWidth: CGFloat = 100
     }
 
-    @StateObject var viewModel: CatBreedListViewModel
-
     @Environment(\.isSearching) var isSearching
+
+    @ObservedObject var viewModel: ViewModel
 
     var body: some View {
 
         ScrollView {
             LazyVGrid(columns: Array(repeating: .init(.flexible(minimum: Constants.minimumCellWidth)), count: 2)) {
-                ForEach(0..<self.viewModel.presentingDataset.count, id: \.self) { index in
+                ForEach($viewModel.presentedDataset, id: \.self) { $catBreed in
                     NavigationLink {
-                        CatBreedDetailScreen(catBreedModel: self.viewModel.presentingDataset[index])
+                        CatBreedDetailScreen(datasource: self.viewModel.datasource, tuple: $catBreed)
                     } label: {
-                        let catBreed = self.viewModel.presentingDataset[index]
 
                         CatBreedListCellView(
-                            catBreed: catBreed,
-                            favourite: self.viewModel.isFavourite(catBreed: catBreed),
+                            datasource: self.viewModel.datasource,
+                            tuple: $catBreed,
                             showLifespan: self.viewModel.favouriteFilter
                         )
+                    }
+                    .onAppear() {
+                        if viewModel.presentedDataset.count > 0,
+                           catBreed == viewModel.presentedDataset.last {
+
+                            self.viewModel.fetchNextPage()
+                        }
                     }
                 }
             }
@@ -46,6 +52,9 @@ struct CatBreedListView: View {
                 self.performSearch()
             }
         }
+        .task {
+            self.viewModel.fetchDataset()
+        }
     }
 
     // MARK: Private
@@ -53,11 +62,5 @@ struct CatBreedListView: View {
     private func performSearch() {
 
         self.viewModel.updatePresentedDataset()
-    }
-}
-
-struct CatBreedListView_Previews: PreviewProvider {
-    static var previews: some View {
-        CatBreedListView(viewModel: CatBreedListViewModel(datasource: CatsDatasource(), favouriteFilter: false))
     }
 }

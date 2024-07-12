@@ -9,16 +9,13 @@ import SwiftUI
 
 struct CatBreedDetailScreen: View {
 
-    let catBreedModel: CatBreedModel
+    let datasource: CatsDatasource
+
+    @Binding var tuple: CatBreedTuple
 
     var body: some View {
 
-        CatBreedDetailView(viewModel: CatBreedDetailViewModel(catBreed: catBreedModel))
-    }
-}
-
-struct CatBreedDetailScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        CatBreedDetailScreen(catBreedModel: CatBreedModel.stub)
+        CatBreedDetailView(datasource: self.datasource, tuple: $tuple)
+            .navigationTitle(self.tuple.catBreed.name)
     }
 }

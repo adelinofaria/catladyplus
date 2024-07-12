@@ -19,12 +19,6 @@ struct CatBreedListScreen: View {
 
     var body: some View {
 
-        CatBreedListView(viewModel: CatBreedListViewModel(datasource: self.datasource, favouriteFilter: self.favouriteFilter))
-    }
-}
-
-struct CatBreedListScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        CatBreedListScreen(datasource: CatsDatasource())
+        CatBreedListView(viewModel: .init(datasource: self.datasource, favouriteFilter: self.favouriteFilter))
     }
 }
