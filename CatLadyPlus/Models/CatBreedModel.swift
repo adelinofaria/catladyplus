@@ -9,7 +9,7 @@ import Foundation
 
 struct CatBreedModel: Decodable, Hashable {
 
-    let weight: CatBreedWeightModel
+    let weight: CatBreedWeightModel?
     let id: String
     let name: String
     let cfa_url: String?

@@ -28,6 +28,41 @@ final class CatLadyPlusUITests: XCTestCase {
         app.launch()
 
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+
+        let title = app.navigationBars.staticTexts.firstMatch
+        let searchBar = app.navigationBars.searchFields.firstMatch
+        let firstCellStaticText = app.scrollViews.firstMatch.staticTexts["CatBreedListCellView"].firstMatch
+
+        XCTAssertEqual(title.label, "Compendium")
+        XCTAssertEqual(searchBar.label, "Breeds of cats")
+        XCTAssertEqual(firstCellStaticText.label, "Abyssinian")
+
+        firstCellStaticText.tap()
+
+        let detailTitle = app.navigationBars.staticTexts.firstMatch
+
+        XCTAssertEqual(detailTitle.label, "Abyssinian")
+
+        let navBack = app.navigationBars.firstMatch.buttons.firstMatch
+
+        navBack.tap()
+
+        let rootTitle = app.navigationBars.staticTexts.firstMatch
+
+        XCTAssertEqual(rootTitle.label, "Compendium")
+
+        let lastCellStaticText = app.scrollViews.firstMatch.staticTexts["York Chocolate"]
+
+        while !lastCellStaticText.exists {
+
+            app.swipeUp()
+        }
+
+        XCTAssertEqual(lastCellStaticText.label, "York Chocolate")
+
+        lastCellStaticText.tap()
+
+        XCTAssertEqual(app.buttons.firstMatch.exists, true)
     }
 
     func testLaunchPerformance() throws {

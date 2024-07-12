@@ -31,6 +31,7 @@ struct CatBreedListView: View {
                             tuple: $catBreed,
                             showLifespan: self.viewModel.favouriteFilter
                         )
+                        .accessibilityIdentifier("CatBreedListCellView")
                     }
                     .onAppear() {
                         if viewModel.presentedDataset.count > 0,

@@ -31,7 +31,7 @@ actor CatsDatasource {
 
         } else {
 
-            let endpoint = CatsApiEndpoints.breeds(limit: Constants.paginationLimit, page: self.breedsPage)
+            let endpoint = CatsApiEndpoint.breeds(limit: Constants.paginationLimit, page: self.breedsPage)
 
             let models: [CatBreedModel] = try await self.networking.perform(request: endpoint.request)
 
@@ -52,7 +52,7 @@ actor CatsDatasource {
 
             self.breedsPage += 1
 
-            let endpoint = CatsApiEndpoints.breeds(limit: Constants.paginationLimit, page: self.breedsPage)
+            let endpoint = CatsApiEndpoint.breeds(limit: Constants.paginationLimit, page: self.breedsPage)
 
             let models: [CatBreedModel] = try await self.networking.perform(request: endpoint.request)
 

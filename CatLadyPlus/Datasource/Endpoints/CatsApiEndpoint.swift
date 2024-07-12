@@ -1,5 +1,5 @@
 //
-//  CatsApiEndpoints.swift
+//  CatsApiEndpoint.swift
 //  CatLadyPlus
 //
 //  Created by Adelino Faria on 12/07/2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CatsApiEndpoints {
+enum CatsApiEndpoint {
 
     case breeds(limit: Int, page: Int)
 
@@ -23,7 +23,7 @@ enum CatsApiEndpoints {
             path = "breeds"
         }
 
-        var url = CatsApiEndpoints.baseURL.appending(path: path)
+        var url = CatsApiEndpoint.baseURL.appending(path: path)
 
         if let additionalQueryItems = self.queryItems,
            var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
@@ -48,7 +48,7 @@ enum CatsApiEndpoints {
 
         let baseHeaders: [String: String] = [
             "Content-Type": "application/json",
-            "x-api-key": CatsApiEndpoints.apiKey
+            "x-api-key": CatsApiEndpoint.apiKey
         ]
 
         return baseHeaders
