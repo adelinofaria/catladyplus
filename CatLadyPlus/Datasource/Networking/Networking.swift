@@ -39,8 +39,6 @@ class Networking {
 
                 } catch {
 
-                    print(error)
-
                     throw NetworkingError.parsing
                 }
 
@@ -49,8 +47,6 @@ class Networking {
                 throw NetworkingError.badResponse
             }
         } catch {
-
-            print(error)
 
             throw NetworkingError.networking
         }

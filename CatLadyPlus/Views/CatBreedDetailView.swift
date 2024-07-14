@@ -9,18 +9,14 @@ import SwiftUI
 
 struct CatBreedDetailView: View {
 
-    let datasource: CatsDatasource
-
-    @Binding var tuple: CatBreedTuple
-
-    @State var favourite: Bool = false
+    @Bindable var model: CatBreedModel
 
     var body: some View {
         ScrollView {
             ZStack(alignment: .topTrailing) {
                 VStack(alignment: .center) {
 
-                    AsyncImage(url: self.tuple.catBreed.image?.url) { phase in
+                    AsyncImage(url: self.model.image?.url) { phase in
                         switch phase {
                         case .empty:
                             ProgressView()
@@ -38,33 +34,23 @@ struct CatBreedDetailView: View {
                         }
                     }
                     Text("Breed:")
-                    Text(self.tuple.catBreed.name)
+                    Text(self.model.name)
                     Text("Origin:")
-                    Text(self.tuple.catBreed.origin ?? "n/a")
+                    Text(self.model.origin ?? "n/a")
                     Text("Temperament:")
-                    Text(self.tuple.catBreed.temperament ?? "n/a")
+                    Text(self.model.temperament ?? "n/a")
                     Text("Description:")
-                    Text(self.tuple.catBreed.description ?? "n/a")
+                    Text(self.model.modelDescription ?? "n/a")
                 }
 
                 Button(action: {
-                    Task {
-                        let favourite = await self.datasource.toggleFavourite(catBreedId: self.tuple.catBreed.id)
-
-                        await MainActor.run {
-                            self.tuple.favourite = favourite
-                            self.favourite = self.tuple.favourite
-                        }
-                    }
+                    self.model.favourite = !(self.model.favourite ?? false)
                 }) {
-                    Image(systemName: self.favourite ? "heart.fill" : "heart")
+                    Image(systemName: self.model.favourite ?? false ? "heart.fill" : "heart")
                         .font(.system(size: 40, weight: .semibold))
                         .foregroundColor(.red)
                 }
             }
-        }
-        .task {
-            self.favourite = self.tuple.favourite
         }
     }
 }

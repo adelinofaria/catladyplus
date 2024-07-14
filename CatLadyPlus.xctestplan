@@ -1,0 +1,43 @@
+{
+  "configurations" : [
+    {
+      "id" : "40F78723-7C19-4B20-99A1-EB8228A48DA8",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "environmentVariableEntries" : [
+      {
+        "key" : "TESTING",
+        "value" : "true"
+      }
+    ],
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:CatLadyPlus.xcodeproj",
+      "identifier" : "C6F089542C40308000565A8D",
+      "name" : "CatLadyPlus"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:CatLadyPlus.xcodeproj",
+        "identifier" : "C6F089692C40308200565A8D",
+        "name" : "CatLadyPlusTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:CatLadyPlus.xcodeproj",
+        "identifier" : "C6F089732C40308200565A8D",
+        "name" : "CatLadyPlusUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

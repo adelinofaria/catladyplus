@@ -6,12 +6,29 @@
 //
 
 import XCTest
+import SwiftUI
+import SwiftData
 
 @testable import CatLadyPlus
 
 final class CatBreedModelTests: XCTestCase {
 
-    func testInitMinimumFields() throws {
+    var sharedModelContainer: ModelContainer = {
+        let schema = Schema([
+            CatBreedModel.self,
+            CatBreedWeightModel.self,
+            CatBreedImageModel.self,
+        ])
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+
+        do {
+            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
+
+    func testInitMinimumFields() async throws {
 
         let dictionary = [
             "id": "123",
@@ -22,11 +39,16 @@ final class CatBreedModelTests: XCTestCase {
 
         let model = try JSONDecoder().decode(CatBreedModel.self, from: data)
 
+        await MainActor.run {
+
+            self.sharedModelContainer.mainContext.insert(model)
+        }
+
         XCTAssertEqual(model.id, dictionary["id"])
         XCTAssertEqual(model.name, dictionary["name"])
     }
 
-    func testInit() throws {
+    func testInit() async throws {
 
         let dictionary: [String: Any] = [
             "weight": [
@@ -81,6 +103,11 @@ final class CatBreedModelTests: XCTestCase {
 
         let model = try JSONDecoder().decode(CatBreedModel.self, from: data)
 
+        await MainActor.run {
+
+            self.sharedModelContainer.mainContext.insert(model)
+        }
+
         XCTAssertEqual(model.weight?.imperial, (dictionary["weight"] as? [String: Any])?["imperial"] as? String)
         XCTAssertEqual(model.weight?.metric, (dictionary["weight"] as? [String: Any])?["metric"] as? String)
 
@@ -93,7 +120,7 @@ final class CatBreedModelTests: XCTestCase {
         XCTAssertEqual(model.origin, dictionary["origin"] as? String)
         XCTAssertEqual(model.country_codes, dictionary["country_codes"] as? String)
         XCTAssertEqual(model.country_code, dictionary["country_code"] as? String)
-        XCTAssertEqual(model.description, dictionary["description"] as? String)
+        XCTAssertEqual(model.modelDescription, dictionary["description"] as? String)
         XCTAssertEqual(model.life_span, dictionary["life_span"] as? String)
         XCTAssertEqual(model.indoor, dictionary["indoor"] as? Int)
         XCTAssertEqual(model.lap, dictionary["lap"] as? Int)

@@ -11,16 +11,6 @@ import XCTest
 
 final class CatsDatasourceTests: XCTestCase {
 
-    override func setUpWithError() throws {
-
-        UserDefaults.standard.removeObject(forKey: CatsDatasource.Constants.userDefaultsFavouritesKey)
-    }
-
-    override func tearDownWithError() throws {
-
-        UserDefaults.standard.removeObject(forKey: CatsDatasource.Constants.userDefaultsFavouritesKey)
-    }
-
     func testRequestBreeds() async throws {
 
         let datasource = CatsDatasource()
@@ -39,20 +29,5 @@ final class CatsDatasourceTests: XCTestCase {
 
         XCTAssertEqual(models.count, 10)
         XCTAssertNotEqual(firstModels, models)
-    }
-
-    func testIsFavourite() async {
-
-        let datasource = CatsDatasource()
-
-        XCTAssertEqual(datasource.isFavourite(catBreedId: "1"), false)
-
-        _ = await datasource.toggleFavourite(catBreedId: "1")
-
-        XCTAssertEqual(datasource.isFavourite(catBreedId: "1"), true)
-
-        _ = await datasource.toggleFavourite(catBreedId: "1")
-
-        XCTAssertEqual(datasource.isFavourite(catBreedId: "1"), false)
     }
 }

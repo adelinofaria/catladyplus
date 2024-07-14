@@ -13,17 +13,15 @@
 		C61E1C8A2C404E97008859EE /* CatsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61E1C892C404E97008859EE /* CatsDatasource.swift */; };
 		C61E1C8D2C406D9F008859EE /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61E1C8C2C406D9F008859EE /* Networking.swift */; };
 		C61E1C912C40928B008859EE /* CatBreedListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61E1C902C40928B008859EE /* CatBreedListCellView.swift */; };
-		C61E1C962C4147D8008859EE /* CatBreedTuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61E1C952C4147D8008859EE /* CatBreedTuple.swift */; };
 		C61E1C982C415964008859EE /* CatsApiEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61E1C972C415964008859EE /* CatsApiEndpoint.swift */; };
 		C61E1C9A2C416BED008859EE /* CatsApiEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61E1C992C416BED008859EE /* CatsApiEndpointTests.swift */; };
 		C61E1C9C2C416C2D008859EE /* CatsDatasourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61E1C9B2C416C2D008859EE /* CatsDatasourceTests.swift */; };
 		C61E1C9E2C416C7E008859EE /* CatBreedModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61E1C9D2C416C7E008859EE /* CatBreedModelTests.swift */; };
+		C65D2E4D2C43536F00F1FA0C /* CatBreedWeightModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65D2E4C2C43536F00F1FA0C /* CatBreedWeightModel.swift */; };
+		C65D2E4F2C43539800F1FA0C /* CatBreedImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65D2E4E2C43539800F1FA0C /* CatBreedImageModel.swift */; };
 		C6F089592C40308000565A8D /* CatLadyPlusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F089582C40308000565A8D /* CatLadyPlusApp.swift */; };
-		C6F0895B2C40308000565A8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F0895A2C40308000565A8D /* ContentView.swift */; };
 		C6F0895D2C40308200565A8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6F0895C2C40308200565A8D /* Assets.xcassets */; };
 		C6F089602C40308200565A8D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6F0895F2C40308200565A8D /* Preview Assets.xcassets */; };
-		C6F089622C40308200565A8D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F089612C40308200565A8D /* Persistence.swift */; };
-		C6F089652C40308200565A8D /* CatLadyPlus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C6F089632C40308200565A8D /* CatLadyPlus.xcdatamodeld */; };
 		C6F0896F2C40308200565A8D /* CatLadyPlusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F0896E2C40308200565A8D /* CatLadyPlusTests.swift */; };
 		C6F089792C40308200565A8D /* CatLadyPlusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F089782C40308200565A8D /* CatLadyPlusUITests.swift */; };
 		C6F0897B2C40308200565A8D /* CatLadyPlusUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F0897A2C40308200565A8D /* CatLadyPlusUITestsLaunchTests.swift */; };
@@ -31,7 +29,6 @@
 		C6F0898F2C4033DE00565A8D /* CatBreedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F0898E2C4033DE00565A8D /* CatBreedListView.swift */; };
 		C6F089912C4033EC00565A8D /* CatBreedListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F089902C4033EC00565A8D /* CatBreedListViewModel.swift */; };
 		C6F089932C40343600565A8D /* CatBreedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F089922C40343600565A8D /* CatBreedModel.swift */; };
-		C6F089982C40361900565A8D /* CatsAPIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F089972C40361900565A8D /* CatsAPIHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,18 +55,17 @@
 		C61E1C892C404E97008859EE /* CatsDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsDatasource.swift; sourceTree = "<group>"; };
 		C61E1C8C2C406D9F008859EE /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		C61E1C902C40928B008859EE /* CatBreedListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreedListCellView.swift; sourceTree = "<group>"; };
-		C61E1C952C4147D8008859EE /* CatBreedTuple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreedTuple.swift; sourceTree = "<group>"; };
 		C61E1C972C415964008859EE /* CatsApiEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsApiEndpoint.swift; sourceTree = "<group>"; };
 		C61E1C992C416BED008859EE /* CatsApiEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsApiEndpointTests.swift; sourceTree = "<group>"; };
 		C61E1C9B2C416C2D008859EE /* CatsDatasourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsDatasourceTests.swift; sourceTree = "<group>"; };
 		C61E1C9D2C416C7E008859EE /* CatBreedModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreedModelTests.swift; sourceTree = "<group>"; };
+		C65D2E4C2C43536F00F1FA0C /* CatBreedWeightModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreedWeightModel.swift; sourceTree = "<group>"; };
+		C65D2E4E2C43539800F1FA0C /* CatBreedImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreedImageModel.swift; sourceTree = "<group>"; };
+		C65D2E532C44277B00F1FA0C /* CatLadyPlus.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CatLadyPlus.xctestplan; sourceTree = SOURCE_ROOT; };
 		C6F089552C40308000565A8D /* CatLadyPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatLadyPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6F089582C40308000565A8D /* CatLadyPlusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatLadyPlusApp.swift; sourceTree = "<group>"; };
-		C6F0895A2C40308000565A8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C6F0895C2C40308200565A8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C6F0895F2C40308200565A8D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C6F089612C40308200565A8D /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		C6F089642C40308200565A8D /* CatLadyPlus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CatLadyPlus.xcdatamodel; sourceTree = "<group>"; };
 		C6F0896A2C40308200565A8D /* CatLadyPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatLadyPlusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6F0896E2C40308200565A8D /* CatLadyPlusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatLadyPlusTests.swift; sourceTree = "<group>"; };
 		C6F089742C40308200565A8D /* CatLadyPlusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatLadyPlusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,7 +75,6 @@
 		C6F0898E2C4033DE00565A8D /* CatBreedListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreedListView.swift; sourceTree = "<group>"; };
 		C6F089902C4033EC00565A8D /* CatBreedListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreedListViewModel.swift; sourceTree = "<group>"; };
 		C6F089922C40343600565A8D /* CatBreedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreedModel.swift; sourceTree = "<group>"; };
-		C6F089972C40361900565A8D /* CatsAPIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsAPIHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,9 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				C6F089582C40308000565A8D /* CatLadyPlusApp.swift */,
-				C6F0895A2C40308000565A8D /* ContentView.swift */,
 				C61E1C882C404E3F008859EE /* Datasource */,
-				C6F089942C40345A00565A8D /* Data */,
 				C6F089872C4032F100565A8D /* Models */,
 				C6F089882C4032FB00565A8D /* Screens */,
 				C6F0898A2C40331300565A8D /* ViewModels */,
@@ -181,6 +174,7 @@
 		C6F0896D2C40308200565A8D /* CatLadyPlusTests */ = {
 			isa = PBXGroup;
 			children = (
+				C65D2E532C44277B00F1FA0C /* CatLadyPlus.xctestplan */,
 				C6F0896E2C40308200565A8D /* CatLadyPlusTests.swift */,
 				C61E1C992C416BED008859EE /* CatsApiEndpointTests.swift */,
 				C61E1C9B2C416C2D008859EE /* CatsDatasourceTests.swift */,
@@ -202,7 +196,8 @@
 			isa = PBXGroup;
 			children = (
 				C6F089922C40343600565A8D /* CatBreedModel.swift */,
-				C61E1C952C4147D8008859EE /* CatBreedTuple.swift */,
+				C65D2E4C2C43536F00F1FA0C /* CatBreedWeightModel.swift */,
+				C65D2E4E2C43539800F1FA0C /* CatBreedImageModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -239,34 +234,8 @@
 			isa = PBXGroup;
 			children = (
 				C6F0895C2C40308200565A8D /* Assets.xcassets */,
-				C6F089632C40308200565A8D /* CatLadyPlus.xcdatamodeld */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C6F089942C40345A00565A8D /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				C6F089952C40351600565A8D /* Network */,
-				C6F089962C40351E00565A8D /* Persistance */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
-		C6F089952C40351600565A8D /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				C6F089972C40361900565A8D /* CatsAPIHandler.swift */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		C6F089962C40351E00565A8D /* Persistance */ = {
-			isa = PBXGroup;
-			children = (
-				C6F089612C40308200565A8D /* Persistence.swift */,
-			);
-			path = Persistance;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,20 +369,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				C61E1C982C415964008859EE /* CatsApiEndpoint.swift in Sources */,
-				C6F089982C40361900565A8D /* CatsAPIHandler.swift in Sources */,
 				C6F0898D2C4033CF00565A8D /* CatBreedListScreen.swift in Sources */,
 				C6F089932C40343600565A8D /* CatBreedModel.swift in Sources */,
 				C61E1C822C403931008859EE /* CatBreedDetailScreen.swift in Sources */,
+				C65D2E4F2C43539800F1FA0C /* CatBreedImageModel.swift in Sources */,
+				C65D2E4D2C43536F00F1FA0C /* CatBreedWeightModel.swift in Sources */,
 				C61E1C802C4038BC008859EE /* RootScreen.swift in Sources */,
 				C6F089912C4033EC00565A8D /* CatBreedListViewModel.swift in Sources */,
 				C61E1C912C40928B008859EE /* CatBreedListCellView.swift in Sources */,
 				C61E1C8D2C406D9F008859EE /* Networking.swift in Sources */,
-				C61E1C962C4147D8008859EE /* CatBreedTuple.swift in Sources */,
 				C61E1C8A2C404E97008859EE /* CatsDatasource.swift in Sources */,
-				C6F089622C40308200565A8D /* Persistence.swift in Sources */,
 				C6F0898F2C4033DE00565A8D /* CatBreedListView.swift in Sources */,
-				C6F0895B2C40308000565A8D /* ContentView.swift in Sources */,
-				C6F089652C40308200565A8D /* CatLadyPlus.xcdatamodeld in Sources */,
 				C61E1C862C404240008859EE /* CatBreedDetailView.swift in Sources */,
 				C6F089592C40308000565A8D /* CatLadyPlusApp.swift in Sources */,
 			);
@@ -459,6 +425,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -490,10 +457,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = C25FQUKVZL;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -507,7 +474,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -522,6 +490,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -553,10 +522,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = C25FQUKVZL;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -564,7 +533,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -634,7 +604,6 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.adelinofaria.$(TARGET_NAME:lower)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -651,7 +620,6 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.adelinofaria.$(TARGET_NAME:lower)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -731,19 +699,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		C6F089632C40308200565A8D /* CatLadyPlus.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				C6F089642C40308200565A8D /* CatLadyPlus.xcdatamodel */,
-			);
-			currentVersion = C6F089642C40308200565A8D /* CatLadyPlus.xcdatamodel */;
-			path = CatLadyPlus.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = C6F0894D2C40308000565A8D /* Project object */;
 }
