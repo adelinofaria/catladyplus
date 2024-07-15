@@ -13,11 +13,23 @@ class Networking {
         static let successResponseRange = 200...299
     }
 
-    enum NetworkingError: Error {
+    enum NetworkingError: Error, LocalizedError {
 
         case networking
         case badResponse
         case parsing
+
+        var errorDescription: String? {
+
+            switch self {
+            case .networking:
+                return "An error occured while trying to connect"
+            case .badResponse:
+                return "An error occured due a bad response from server"
+            case .parsing:
+                return "An error occured while trying to parse server response"
+            }
+        }
     }
 
     let urlsession = URLSession(configuration: URLSessionConfiguration.default)
@@ -25,7 +37,6 @@ class Networking {
     func perform<T>(request: URLRequest) async throws -> T where T: Decodable {
 
         do {
-
             let (data, response) = try await self.urlsession.data(for: request)
 
             if let validResponse = response as? HTTPURLResponse,

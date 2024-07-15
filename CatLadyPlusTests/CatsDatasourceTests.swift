@@ -15,19 +15,12 @@ final class CatsDatasourceTests: XCTestCase {
 
         let datasource = CatsDatasource()
 
-        let models: [CatBreedModel] = try await datasource.requestBreeds()
+        let models: [CatBreedModel] = try await datasource.requestBreeds(limit: 10, page: 0)
 
         XCTAssertEqual(models.count, 10)
-    }
 
-    func testRequestBreedsNextPage() async throws {
+        let models2: [CatBreedModel] = try await datasource.requestBreeds(limit: 5, page: 1)
 
-        let datasource = CatsDatasource()
-
-        let firstModels: [CatBreedModel] = try await datasource.requestBreeds()
-        let models: [CatBreedModel] = try await datasource.requestBreedsNextPage()
-
-        XCTAssertEqual(models.count, 10)
-        XCTAssertNotEqual(firstModels, models)
+        XCTAssertEqual(models2.count, 5)
     }
 }

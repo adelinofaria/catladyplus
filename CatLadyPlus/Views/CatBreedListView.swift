@@ -23,7 +23,7 @@ struct CatBreedListView: View {
 
     var body: some View {
 
-        let items = self.locelFilterOfQueryResults(items: self.items)
+        let items = self.viewModel.locelFilterOfQueryResults(items: self.items)
 
         ScrollView {
             LazyVGrid(columns: Array(repeating: .init(.flexible(minimum: Constants.minimumCellWidth)), count: 2)) {
@@ -42,25 +42,21 @@ struct CatBreedListView: View {
             }
         }
         .searchable(text: $viewModel.searchText, prompt: "Breeds of cats")
+        .alert("Error",
+               isPresented: $viewModel.isShowingError,
+               actions: { },
+               message: { Text(viewModel.errorDescription ?? "") })
         .task {
-            self.fetchDataset(limit: Constants.paginationLimit, page: 0)
+            await self.viewWillAppearTask()
         }
     }
 
     // MARK: Private
 
-    private func locelFilterOfQueryResults(items: [CatBreedModel]) -> [CatBreedModel] {
-
-        let items = items.filter {
-            let favouriteFilter = self.viewModel.favouriteFilter ? ($0.favourite ?? false) : true
-            let textSearchFilter = self.viewModel.searchText.isEmpty ? true : ($0.name.contains(self.viewModel.searchText))
-
-            return favouriteFilter && textSearchFilter
-        }
-
-        return items
-    }
-
+    /// Figures out the pagination logic based on grid cell's index.
+    /// - Parameters:
+    ///   - items: Grid full dataset
+    ///   - item: Grid cell item
     private func cellOnAppear(items: [CatBreedModel], item: CatBreedModel) {
 
         if let index = items.firstIndex(of: item) {
@@ -70,7 +66,6 @@ struct CatBreedListView: View {
                 let isFreshContent = item.timestamp.timeIntervalSinceNow < 300
 
                 if !isFreshContent {
-
                     self.fetchDataset(limit: Constants.paginationLimit, page: 0)
                 }
             } else if index % Constants.paginationLimit == 0 {
@@ -79,7 +74,6 @@ struct CatBreedListView: View {
                 let pageMultiplier = index / Constants.paginationLimit
 
                 if !isFreshContent {
-
                     self.fetchDataset(limit: Constants.paginationLimit, page: pageMultiplier)
                 }
             } else if ((index + 1) % Constants.paginationLimit == 0) && items.last == item {
@@ -92,44 +86,42 @@ struct CatBreedListView: View {
         }
     }
 
-    func fetchDataset(limit: Int, page: Int) {
+    /// When view is about to appear we request first page of models
+    private func viewWillAppearTask() async {
+
+        self.fetchDataset(limit: Constants.paginationLimit, page: 0)
+    }
+    
+    /// Request the pagination of cat breed models and also merge local managed properties (CatBreedModel.favourite) before sending models to persistent store
+    /// Function placed here, due modelContext ownership
+    /// - Parameters:
+    ///   - limit: Request page size
+    ///   - page: Request page index
+    private func fetchDataset(limit: Int, page: Int) {
 
         Task {
-            do {
-                let dataset = try await self.viewModel.datasource.requestBreeds(limit: limit, page: page)
+            // start by requesting server data
+            if let dataset = await self.viewModel.fetchDataset(limit: limit, page: page) {
+
+                // Fetch local corresponding objects
                 let datasetIds = dataset.map { $0.id }
 
-                let predicate = #Predicate<CatBreedModel> {
+                let fetchDescriptor = FetchDescriptor<CatBreedModel>(predicate: #Predicate {
                     datasetIds.contains($0.id)
-                }
+                })
 
-                let storedModels = try modelContext.fetch(FetchDescriptor<CatBreedModel>(predicate: predicate))
+                let storedModels = try modelContext.fetch(fetchDescriptor)
 
-                // Update incoming dataset with client-side only info (favourites)
-                dataset.forEach { item in
-                    let correspondingStoredModel = storedModels.filter { $0.id == item.id }.first
+                // Copy local-only porperties to the recently downloaded new models
+                // Avoiding the local state overwrite
+                self.viewModel.mergeExternalDataset(localDataset: storedModels, externalDataset: dataset)
 
-                    item.favourite = correspondingStoredModel?.favourite ?? false
-                }
 
+                // Update persistant storage on main actor
                 await MainActor.run {
                     withAnimation {
                         dataset.forEach { modelContext.insert($0) }
                     }
-                }
-
-            } catch {
-
-                // TODO: deal with catch
-                switch error {
-                case Networking.NetworkingError.networking:
-                    print("networking yikers")
-                case Networking.NetworkingError.badResponse:
-                    print("badresponse yikers")
-                case Networking.NetworkingError.parsing:
-                    print("parsing yikers")
-                default:
-                    print("yikers")
                 }
             }
         }

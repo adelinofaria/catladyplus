@@ -33,14 +33,26 @@ struct CatBreedDetailView: View {
                             EmptyView()
                         }
                     }
-                    Text("Breed:")
-                    Text(self.model.name)
-                    Text("Origin:")
-                    Text(self.model.origin ?? "n/a")
-                    Text("Temperament:")
-                    Text(self.model.temperament ?? "n/a")
-                    Text("Description:")
-                    Text(self.model.modelDescription ?? "n/a")
+                    HStack {
+                        Text("Breed:")
+                            .bold()
+                        Text(self.model.name)
+                    }
+                    HStack {
+                        Text("Origin:")
+                            .bold()
+                        Text(self.model.origin ?? "n/a")
+                    }
+                    HStack {
+                        Text("Temperament:")
+                            .bold()
+                        Text(self.model.temperament ?? "n/a")
+                    }
+                    HStack {
+                        Text("Description:")
+                            .bold()
+                        Text(self.model.modelDescription ?? "n/a")
+                    }
                 }
 
                 Button(action: {
