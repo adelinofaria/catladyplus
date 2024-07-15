@@ -42,3 +42,7 @@ But there's two big drawbacks for this use case, the images aren't cached automa
 The way I would address this would be most likely to end up by using SwiftUI's Image view, and then manually addressing placeholder, loading and display states. With custom networking to assure caching on the client and true image resizing with UIKit's UIImage drawRect: mechanics.
 
 This would resolve the stuttering (fps drops) and memory footprint of list images in the device.
+
+> NOTE: I believe that an Image component like I just described is a whole and full featured component and I've considered it to be out of scope for this exercise. Dealing with URLCaching and image/file manipulations is something can be a rabbit hole, I felt that I should focus on building an app with data consistency with persistence and be up to especification.
+
+> I'd also like to add that building an **app UI without fps drops is non-negotiable for production applications**.
