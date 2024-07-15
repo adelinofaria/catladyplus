@@ -1,6 +1,10 @@
 # (Crazy) CatLady+ iOS app companion
 Browse through your favourite cat breeds and learn everything about them
 
+## Before you run the app
+
+Make sure you insert API-Key at ```CatsApiEndpoint.swift:15```
+
 ## Thoughts on building this application
 
 Started with setting up the project with MVVM in mind.
@@ -28,3 +32,13 @@ The most complex view that I have is CatBreedListView and sent all testable logi
 In regards to tests, I usually start working on them once I have stable interfaces. Another thing I'd like to notice is I'm not stubbing networking calls as I usually do, for simplicity and to avoid just importing third parties all together.
 
 Didn't go too wild on UITests, just focused in the golden path (List, check there's cells, navigate to detail, navigate back and find the last cat in the scroll view).
+
+### Final considerations:
+
+The one thing I'm not quite happy in the app is the Images on the list view.
+For simplicity, I chose to use AsyncImage to display the images. Given url and done, placeholding, loading and image display logics done.
+But there's two big drawbacks for this use case, the images aren't cached automatically and image assets aren't resized (Meaning big image assets are kept in memory - e.g. 5Mb image is scaled transformed into AsyncImage, maintaining it's memory footprint), resulting in a noticeable stutter on scrolling.
+
+The way I would address this would be most likely to end up by using SwiftUI's Image view, and then manually addressing placeholder, loading and display states. With custom networking to assure caching on the client and true image resizing with UIKit's UIImage drawRect: mechanics.
+
+This would resolve the stuttering (fps drops) and memory footprint of list images in the device.

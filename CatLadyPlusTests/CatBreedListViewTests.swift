@@ -81,8 +81,8 @@ final class CatBreedListViewTests: XCTestCase {
 
         let timestampNow = Date.now
 
-        let model1 = CatBreedListViewTests.catBreedModel(id: "id1", name: "name1")
-        let model2 = CatBreedListViewTests.catBreedModel(id: "id2", name: "name2", favourite: true)
+        let model1 = CatBreedListViewTests.catBreedModel(id: "id1", name: "name1", timestamp: .now - 1)
+        let model2 = CatBreedListViewTests.catBreedModel(id: "id2", name: "name2", favourite: true, timestamp: .now - 1)
         let model3 = CatBreedListViewTests.catBreedModel(id: "id3", name: "name3", favourite: false, timestamp: .now - 360)
         let eModel1 = CatBreedListViewTests.catBreedModel(id: "id1", name: "name1", favourite: false, timestamp: timestampNow)
         let eModel2 = CatBreedListViewTests.catBreedModel(id: "id2", name: "name2", favourite: false, timestamp: timestampNow)
