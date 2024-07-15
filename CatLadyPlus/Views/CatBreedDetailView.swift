@@ -14,7 +14,7 @@ struct CatBreedDetailView: View {
     var body: some View {
         ScrollView {
             ZStack(alignment: .topTrailing) {
-                VStack(alignment: .center) {
+                VStack {
 
                     AsyncImage(url: self.model.image?.url) { phase in
                         switch phase {
@@ -33,26 +33,23 @@ struct CatBreedDetailView: View {
                             EmptyView()
                         }
                     }
-                    HStack {
+                    VStack(alignment: .leading) {
                         Text("Breed:")
                             .bold()
                         Text(self.model.name)
-                    }
-                    HStack {
+                        Spacer()
                         Text("Origin:")
                             .bold()
                         Text(self.model.origin ?? "n/a")
-                    }
-                    HStack {
+                        Spacer()
                         Text("Temperament:")
                             .bold()
                         Text(self.model.temperament ?? "n/a")
-                    }
-                    HStack {
+                        Spacer()
                         Text("Description:")
                             .bold()
                         Text(self.model.modelDescription ?? "n/a")
-                    }
+                    }.padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20))
                 }
 
                 Button(action: {
