@@ -20,6 +20,7 @@
 		C65D2E4D2C43536F00F1FA0C /* CatBreedWeightModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65D2E4C2C43536F00F1FA0C /* CatBreedWeightModel.swift */; };
 		C65D2E4F2C43539800F1FA0C /* CatBreedImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65D2E4E2C43539800F1FA0C /* CatBreedImageModel.swift */; };
 		C65D2E552C44893900F1FA0C /* CatBreedListViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65D2E542C44893900F1FA0C /* CatBreedListViewTests.swift */; };
+		C65D2E572C45340F00F1FA0C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C65D2E562C45340F00F1FA0C /* Localizable.xcstrings */; };
 		C6F089592C40308000565A8D /* CatLadyPlusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F089582C40308000565A8D /* CatLadyPlusApp.swift */; };
 		C6F0895D2C40308200565A8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6F0895C2C40308200565A8D /* Assets.xcassets */; };
 		C6F089602C40308200565A8D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6F0895F2C40308200565A8D /* Preview Assets.xcassets */; };
@@ -64,6 +65,7 @@
 		C65D2E4E2C43539800F1FA0C /* CatBreedImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreedImageModel.swift; sourceTree = "<group>"; };
 		C65D2E532C44277B00F1FA0C /* CatLadyPlus.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CatLadyPlus.xctestplan; sourceTree = SOURCE_ROOT; };
 		C65D2E542C44893900F1FA0C /* CatBreedListViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreedListViewTests.swift; sourceTree = "<group>"; };
+		C65D2E562C45340F00F1FA0C /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		C6F089552C40308000565A8D /* CatLadyPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatLadyPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6F089582C40308000565A8D /* CatLadyPlusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatLadyPlusApp.swift; sourceTree = "<group>"; };
 		C6F0895C2C40308200565A8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				C6F0895C2C40308200565A8D /* Assets.xcassets */,
+				C65D2E562C45340F00F1FA0C /* Localizable.xcstrings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 			files = (
 				C6F089602C40308200565A8D /* Preview Assets.xcassets in Resources */,
 				C6F0895D2C40308200565A8D /* Assets.xcassets in Resources */,
+				C65D2E572C45340F00F1FA0C /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

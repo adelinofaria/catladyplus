@@ -1,0 +1,36 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Breed:" : {
+
+    },
+    "Breeds" : {
+
+    },
+    "Breeds of cats" : {
+
+    },
+    "Compendium" : {
+
+    },
+    "Description:" : {
+
+    },
+    "Error" : {
+
+    },
+    "Favourites" : {
+
+    },
+    "Lifespan: %@yr" : {
+
+    },
+    "Origin:" : {
+
+    },
+    "Temperament:" : {
+
+    }
+  },
+  "version" : "1.0"
+}
